@@ -1,0 +1,62 @@
+.products {
+
+    &__title {
+        @include font(30px, 36px);        
+        text-align: center;
+        margin: 0 auto 6px;
+        width: 75%;
+    }
+    
+    &__text {
+        font-size: 14px;
+        line-height: 17px;
+        color: $gray;
+        text-align: center;
+        margin: 0 auto 48px;
+        width: 75%;
+
+        @include tablet {
+            margin: 0 auto 73px;
+        }
+
+        @include mobile {
+            margin: 0 auto 65px;
+            width: 100%;
+        }
+    }
+
+    &__button {
+        text-decoration: none;
+        display: flex;
+        padding: 14px 37px;
+        width: 211px;
+        border: 1px solid $bittersweet;
+        margin: 0 auto 96px;
+        color: $dark-pink;
+        outline: none;
+        transition: color 1000ms;
+
+        &:hover {
+            color: $white;
+            background-color: $dark-pink;
+        }
+
+        &:focus {
+            color: $white;
+            background-color: $dark-pink;
+        }
+
+        &:active {
+            color: $dark-pink;
+            background-color: $white;
+        }
+
+        @include tablet {
+            margin: 0 auto 65px;
+        }
+
+        @include mobile {
+            margin: 0 auto 97px;
+        }
+    }   
+}
