@@ -1,0 +1,29 @@
+.form {
+    width: 25%;
+    margin: 20px 0 0 20px;
+}
+
+.fieldset {
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
+.legend, .text, .tel, .email, .textarea {
+    margin: 0 0 10px;
+    padding: 5px 0 5px 5px;
+}
+
+.button {
+    width: 120px;
+    margin: 0 0 10px;
+}
+
+.mistake {
+    border: 1px solid red;
+}
+
+.mistake-email, .mistake-text, .mistake-tel {
+    background-color: coral;
+    margin: 0 0 10px;
+}
