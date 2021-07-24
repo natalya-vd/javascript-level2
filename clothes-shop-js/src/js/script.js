@@ -1,5 +1,5 @@
-//Вопрос 1: Хотела сделать отображение цены товара в виде $1000.00. В прошлом задании делала это через шаблонные строки ({{`$${good.price}.00`}}), но сейчас так не работает и он ругается на знак $. Как мне вывести знак $ на страницу (строка 50)?
-const API_URL = "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses";
+//Вопрос: В прошлом ДЗ у меня работал метод поиска уникальных значений (см. строка 181), сейчас он перестал работать. Почему? Вместо него я написала другой метод (см. строка 184), но он слишком длинный. Можно ли как-то изменить метод (строка 181) чтобы он работал? 
+const API_URL = "http://localhost:3000";
 const MAX_GOODS_BASKET = 9;
 
 Vue.component('product-list', {
@@ -131,18 +131,45 @@ Vue.component('basket', {
        * 
        * @param {MouseEvent} event Добавляем товар в корзину по itemid товара
        */
-    addGood(event) {
-        console.log('ура')
+    async addGood(event) {
         for(let i = 0; i < this.goods.length; i++) {
           let idProduct = this.goods[i].id_product;
     
           if(idProduct === +event.path[2].attributes[0].value) {
-            this.goodsBasket.push(this.goods[i]);
+            await this.addToCart(this.goods[i])
           };
         }
-  
-        this.basket = this.searchUniqueValues(this.goodsBasket);
-        this.calculateGoods()
+
+        await this.getToCart()
+    },
+
+    /**
+     * Функция, которая отправляет товар на сервер в cart.json
+     * @param {Obj} good Объект с данными товара
+     */
+    async addToCart(good) {
+      const response = await fetch(`${API_URL}/addToCart`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(good)
+      });
+    },
+
+    async getToCart() {
+      const response = await fetch(`${API_URL}/cartData`);
+        if (response.ok) {
+          const catalogGoods = await response.json();
+          
+          this.goodsBasket = catalogGoods;
+          this.basket = this.searchUniqueValues(this.goodsBasket);
+          this.calculateGoods();
+          
+        } else {
+          alert("Ошибка при соединении с сервером");
+        }
     },
 
     /**
@@ -150,8 +177,27 @@ Vue.component('basket', {
      * @param {Array} arrValues Исходный массив данных
      * @returns Возвращает массив из уникальных значений
      */
+    // searchUniqueValues(arrValues) {
+    //  return [...new Set(arrValues)];
+    // },
+
     searchUniqueValues(arrValues) {
-      return [...new Set(arrValues)];
+      const newArrValues = [];
+
+      const unique = [...new Set(arrValues.map(item => item.id_product))];
+
+      for(let j = 0; j < unique.length; j++) {
+        for(let i = 0; i < arrValues.length; i++) {
+          if(arrValues[i].id_product === unique[j]) {
+            newArrValues.push(arrValues[i]);
+            break
+          }
+          continue
+        }
+        continue
+      }
+
+      return newArrValues;
     },
 
     /**
@@ -196,29 +242,48 @@ Vue.component('basket', {
       return arr.length
     },
 
+    async removeToCart(good) {
+      const response = await fetch(`${API_URL}/removeToCart`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(good)
+      });
+    },
+
     /**
      * Метод удаления товара из корзины
      * @param {Id} idGood Id удаляемого товара
      */
-    removeGood(idGood) {
+    async removeGood(idGood) {
       for(let i = this.goodsBasket.length - 1; i >= 0; i--) {
         if(this.goodsBasket[i].id_product === +idGood) {
-          this.goodsBasket.splice([i], 1);
+          await this.removeToCart(this.goodsBasket[i])
+          //this.goodsBasket.splice([i], 1);
           break;
         };
       };
-      this.basket = this.searchUniqueValues(this.goodsBasket);
-      this.calculateGoods()
+      
+
+      await this.getToCart()
+      // this.basket = this.searchUniqueValues(this.goodsBasket);
+      // this.calculateGoods()
     }
   }
+
+  // async mounted() {
+  //   await this.getToCart()
+  // }
 });
 
 const app = new Vue({
-
     el: "#app",
     data: {
         goods: [],
         filteredGoods: [],
+        //goodsBasket: [],
         sumGoods: '',
     },
 
@@ -227,7 +292,7 @@ const app = new Vue({
        * Запрос товара с сервера
        */
       async getProducts() {
-        const responce = await fetch(`${API_URL}/catalogData.json`);
+        const responce = await fetch(`${API_URL}/catalogData`);
         if (responce.ok) {
           const catalogItems = await responce.json();
           this.goods = catalogItems;
@@ -250,6 +315,7 @@ const app = new Vue({
        */
       getClickOfProductsItem() {
           this.$refs.basket.addGood(event);
+          //this.$refs.basket.addToCart()
       },
 
 
@@ -264,5 +330,6 @@ const app = new Vue({
 
     async mounted() {
       await this.getProducts();
+      await this.$refs.basket.getToCart();
     }
 });
