@@ -1,0 +1,412 @@
+.header {
+    background-color: $black;
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        min-height: 75px;
+        align-items: center;
+        position: relative;
+
+        @include tablet {
+            margin: 0 16px;
+        }
+
+        @include mobile {
+            margin: 0 8px;
+        }
+    }
+
+    &__controls {
+        display: flex;
+        align-items: center;
+        //max-width: 40%;
+        flex-wrap: wrap;
+        padding: 10px 0 0;
+
+        @include tablet {
+            //max-width: 50%;
+        }
+
+        @include mobile {
+            //max-width: 53%;
+        }
+
+        &_size {
+            width: 80%;
+        }
+    }
+    
+    &__logo-link {
+        margin: 0 41px 10px 0;
+        outline: none;
+
+        &:hover {
+            fill-opacity: 0.6;
+        }
+
+        &:focus {
+            outline: 1px solid $white;
+        }
+
+        &:active {
+            outline: 1px solid $pink;
+        }
+    }
+    
+    &__icon-logo {
+        fill: url(#pattern0);
+    }   
+
+    &__form {
+        display: flex;
+        width: 80%;
+
+        &-button {
+            background-color: transparent;
+            outline: none;
+            border: none;
+            position: relative;
+            z-index: 1;
+            margin: 0 10px 0 8px;
+            padding: 0;
+        }
+
+        &-button:focus &-icon-loupe {
+            fill: $dark-pink;
+        }
+
+        &-button:active &-icon-loupe {
+            fill: $white;
+        }
+
+        &-icon-loupe {
+            fill: $white;
+            cursor: pointer;
+            display: block;
+            
+            &:hover {
+                fill: $dark-pink;
+            }
+        }
+
+        &-inner {
+            //display: none;
+            display: flex;
+            width: 100%;
+        }
+
+        &-input {
+            width: 100%;
+            height: 35px;
+            padding: 0 10px 0 48px;
+            outline: none;
+            border: none;
+            border-radius: 20px 0 0 20px;
+            font-size: 14px;
+            line-height: 17px;
+            font-weight: 400;
+            font-style: normal;
+            box-sizing: border-box;
+
+            @include tablet {
+                //width: 40%;
+            }
+
+            @include width-480 {
+                //width: 30%;
+            }
+
+            @include mobile {
+                //width: 55%;
+            }
+
+            &:hover {
+                border: 1px solid $dark-pink;
+            }
+
+            &:focus {
+                border: 1px solid $dark-pink;
+            }
+        }
+
+        &-btn-serch {
+            width: 100px;
+            min-height: 35px;
+            background-color: #F16D7F;
+            border: none;
+            border-radius: 0 20px 20px 0;
+            font-size: 14px;
+            line-height: 17px;
+            font-weight: 400;
+            font-style: normal;
+            color: #FFFFFF;
+            cursor: pointer;
+            outline: none;
+
+            &:hover {
+                opacity: 0.75;
+            }
+
+            &:focus {
+                opacity: 0.75;
+            }
+
+            &:active {
+                color: #F16D7F;
+                background-color: #FFFFFF;
+                border: 1px solid #F16D7F;
+                opacity: 1;
+            }
+        }
+
+        .display-block {
+            display: block;
+        }
+    }
+    
+    /*Меню через чекбокс начало*/
+    
+    #toggle {
+        display: none;
+    }
+    
+    #toggle:checked ~ .header__navigation {
+        display: block;
+        right: 0;
+    }
+    
+    &__navigation {
+        display: none;
+        width: 100vw;
+        min-height: 764px;
+        background: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 100%;
+        right: -100vw;
+        z-index: 1;
+        right: 0;
+
+        @include width-480 {
+            background: none;
+        }
+
+        &-list {
+            padding: 37px 33px 0;
+            box-sizing: border-box;
+            min-height: 765px;
+            width: 232px;
+            background-color: $white;
+            position: absolute;
+            right: -232px;
+            box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.21);
+
+            @include desktop {
+                right: 0;
+            }
+
+            @include tablet {
+                right: -32px;
+            }
+
+            @include width-480 {
+                width: 96%;
+                right: -15px;
+            }
+        }
+
+        &-title {
+            @include font(14px, 17px, 700);            
+            text-transform: uppercase;
+            margin: 0 0 24px;
+        }
+
+        &-item {
+            margin: 0 0 20px;    
+        }
+
+        &-heading {
+            @include font(14px, 17px);            
+            text-transform: uppercase;
+            color: $dark-pink;
+        }
+        
+        &-item-inner {
+            padding: 12px 0 0 22px;
+        }
+        
+        &-link {
+            @include font(14px, 17px);
+            text-decoration: none;            
+            color: $dull-gray;
+            margin: 0 0 11px;
+            display: block;
+
+            &:hover {
+                color: $dark-pink;
+            }
+        }    
+    }   
+    
+    &__icon-menu {
+        fill: $white;
+        cursor: pointer;
+        display: block;
+        margin: 0 0 10px;
+
+        &:hover {
+            fill: $dark-pink;
+        }
+    }
+    
+    &__menu-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        fill: $dull-gray;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.75;;
+        }
+    }
+    
+    /*Меню через чекбокс конец*/
+    
+    &__person-link {
+        margin: 0 0 10px 34px;
+
+        &:focus {
+            outline: 1px solid $white;
+        }
+
+        &:active {
+            outline: 1px solid $pink;
+        }
+
+        @include mobile {
+            display: none;
+        }
+    }
+    
+    &__icon-registration {
+        fill: $white;
+
+        &:hover {
+            fill: $dark-pink;
+        }
+    }
+
+    &__cart-link {
+        height: 65px;
+        padding: 12px 0 0 34px;
+
+        &:focus {
+            outline: 1px solid $white;
+        }
+
+        &:active {
+            outline: 1px solid $pink;
+        }
+
+        @include mobile {
+            display: none;
+        }
+    }
+    
+    &__icon-cart {
+        fill: $white;
+
+        &:hover {
+            fill: $dark-pink;
+        }
+    }
+
+    &__cart-goods {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 14px;
+        right: -9px;
+        border: 1px solid $dark-pink;
+        border-radius: 50%;
+        background-color: $dark-pink;
+        text-align: center;
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    &__basket-inner {
+        display: none;
+    }
+
+    &__cart-link:hover ~ &__basket-inner,
+    &__basket-inner:hover {
+        display: block;
+        background-color: white;
+        width: 300px;
+        height: 600px;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 1;
+        box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.21);
+        padding: 37px 33px 30px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+    }
+    //Проверь все что ниже
+    &__basket-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 0 10px;
+    }
+    
+    &__basket-img {
+        width: 25px;
+        height: 25px;
+        background-color: lightgray;
+    }
+
+    &__basket-total-list {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__btn-delet {
+        height: 25px;
+        border-radius: 50%;
+        width: 25px;
+        border: 1px solid pink;
+        background-color: transparent;
+        font-size: 22px;
+        line-height: 22px;
+        text-align: center;
+        cursor: pointer;
+    }
+    
+    &__goods-list {
+        display: flex;    
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    &__goods-item {
+        border: 1px solid wheat;
+        width: 250px;
+        box-sizing: border-box;
+        padding: 0px 20px 10px;
+        margin: 10px 0;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    
+    &__goods-item + .goods-item {
+        margin: 10px 0 10px 20px;
+    }
+}

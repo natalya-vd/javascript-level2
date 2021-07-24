@@ -1,0 +1,414 @@
+.cart {    
+    margin: 0 auto 128px;
+
+    @include width-480 {
+        margin: 0 auto 96px;
+    }
+
+    &__form {
+        display: flex;
+        justify-content: space-between;
+
+        @include width-1024 {
+            flex-direction: column;
+        }
+
+        &-product {
+            width: 652px;
+
+            @include desktop {
+                width: 57%;
+            }
+
+            @include width-1024 {
+                width: 100%;
+            }
+        }
+
+        &-list {
+            margin: 0 0 73px;
+
+            @include width-1024 {
+                margin: 0 0 62px;
+            }
+
+            @include width-480 {
+                margin: 0 0 30px;
+            }
+        }
+
+        &-item {
+            display: flex;
+            margin: 0 0 40px;
+            box-shadow: (17px 19px 24px rgba(0, 0, 0, 0.13));
+            position: relative;
+
+            @include width-480 {
+                margin: 0 0 32px;
+                box-shadow: (8px 8px 21px rgba(0, 0, 0, 0.13));
+                min-height: 188px;
+            }
+    
+            &:hover {
+                box-shadow: (17px 19px 24px rgba(0, 0, 0, 0.33));
+            }
+
+            &-inner-img {
+                display: flex;
+                align-items: flex-end;
+                background-color: #F3EEEF;
+
+                &_c {
+                    background-color: #EDE9E6;
+                }
+
+                @include desktop {
+                    width: 40%;
+                    height: auto;
+                }
+
+                @include tablet {
+                    width: 36%;
+                }
+
+                @include width-480 {
+                    width: 40%;
+                }
+            }
+
+            &-img {
+                width: 100%;
+                display: block;
+                height: auto;
+            }
+    
+            &-inner {
+                padding: 22px 22px 0 31px;
+
+                @include desktop {
+                    width: 60%;
+                }
+
+                @include tablet {
+                    width: 64%;
+                }
+
+                @include width-480 {
+                    width: 60%;
+                    padding: 14px 0 0 17px;
+                }
+            }
+    
+            &-close {
+                position: absolute;
+                top: 28px;
+                right: 22px;
+                fill: $dull-gray;
+                cursor: pointer;
+    
+                &:hover {
+                    opacity: 0.75;
+                }
+
+                @include width-480 {
+                    width: 10px;
+                    height: 10px;
+                    top: 17px;
+                    right: 12px;
+                }
+            }
+    
+            &-heading {
+                text-transform: uppercase;
+                @include font(24px, 29px);
+                width: 262px;
+                margin: 0 0 42px;
+
+                @include desktop {
+                    width: 63%;
+                }
+
+                @include width-480 {
+                    @include font(16px, 19px);
+                    width: 67%;
+                    margin: 0 0 26px;
+                }
+            }
+
+            &-link {
+                text-decoration: none;
+                color: $black;
+
+                &:hover {
+                    color: $dark-pink;
+                }
+
+                &:focus {                
+                    text-decoration: underline;
+                    outline: none;
+                    color: $dark-pink;
+                }
+
+                &:active {
+                    text-decoration: underline;
+                }
+            }
+    
+            &-text {
+                @include font(22px, 26px);
+                margin: 0 0 6px;
+                color: $dull-gray;
+    
+                &-pink {
+                    color: $dark-pink;
+                }
+
+                @include width-480 {
+                    @include font(14px, 17px);
+                    margin: 0 0 4px;
+                }
+            }
+    
+            &-row {
+                display: flex;
+                margin: 0 0 10px 0;
+            }
+    
+            &-input {
+                @include font(18px, 22px);
+                width: 44px;
+                height: 25px;
+                margin: 0 0 0 24px;
+                width: 44px;            
+                box-sizing: border-box;
+                outline: none;
+                text-align: center;
+                color: $dull-gray;
+                border: 1px solid $gainsborough;
+                
+                &:focus {
+                    border: 1px solid $dark-pink;
+                }
+                
+                &:hover {
+                    box-shadow: (3px 5px 10px rgba(0, 0, 0, 0.16));
+                }
+
+                @include width-480 {
+                    @include font(10px, 12px);
+                    width: 24px;
+                    height: 15px;
+                }
+            }
+        }
+    }
+
+    &__button-group {
+        display: flex;
+        justify-content: space-between;
+
+        @include width-1024 {
+            justify-content: space-evenly;
+            margin: 0 0 65px;
+        }
+
+        @include width-480 {
+            justify-content: space-between;
+            margin: 0 0 48px;
+        }
+    }
+
+    &__button {
+        @include font(14px, 17px, 300);
+        text-transform: uppercase;        
+        padding: 16px 39px;
+        background-color: $white;
+        color: $black;
+        outline: none;
+        border: 1px solid $gray;
+        cursor: pointer;
+        width: 235px;
+        transition: background-color 800ms, color 800ms, border 800ms;
+
+        @include width-480 {
+            @include font(12px, 14px);
+            padding: 9px 18px;
+            width: 174px;
+            min-height: 32px;
+        }
+
+        &:hover {
+            background-color: $dark-pink;
+            color: $white;
+            border: 1px solid $smoky-pink;
+        }
+
+        &:focus {
+            background-color: $dark-pink;
+            color: $white;
+            border: 1px solid $smoky-pink;
+        }
+
+        &:active {
+            border: 1px solid $black;
+        }
+    }
+
+    &__form-address {
+        width: 360px;
+        
+        @include desktop {
+            width: 32%;
+        }
+
+        @include width-1024 {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @include width-480 {
+            flex-direction: column;
+        }
+    }
+
+    &__form-inner {
+        margin: 0 0 58px;
+
+        @include width-1024 {
+            width: 49%;
+            margin: 0;
+        }
+
+        @include width-480 {
+            width: 100%;
+            margin: 0 0 49px;
+        }
+    }
+
+    &__form-fieldset {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 3px;
+    }
+
+    &__form-legend {
+        @include font(16px, 19px, 300);
+        text-transform: uppercase;
+        margin: 0 0 20px;
+    }
+
+    &__form-input {
+        @include font(13px, 16px, 300);
+        padding: 14px 0 14px 17px;
+        margin: 0 0 21px;
+        outline: none;
+        border: 1px solid $gray;
+
+        &:hover {
+            opacity: 0.65;
+        }
+
+        &:focus {
+            border: 1px solid $dark-pink;
+        }
+    }
+
+    &__form-button {
+        @include font(11px, 13px, 300);
+        text-transform: uppercase;
+        width: 108px;
+        padding: 11px 15px;
+        box-sizing: border-box;
+        background-color: $white;
+        outline: none;
+        border: 1px solid $gray;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $dark-pink;
+            color: $white;
+            border: 1px solid $smoky-pink;
+        }
+
+        &:focus {
+            background-color: $dark-pink;
+            color: $white;
+            border: 1px solid $smoky-pink;
+        }
+
+        &:active {
+            border: 1px solid $black;
+        }
+    }
+
+    &__form-sum {
+        min-height: 214px;
+        background-color: $smoky-gray;
+        padding: 40px 43px;
+
+        @include width-1024 {
+            width: 49%;
+        }
+
+        @include width-480 {
+            width: 100%;
+        }
+    }
+
+    &__form-text-subtotal {
+        @include font(11px, 13px);
+        text-transform: uppercase;
+        text-align: end;
+        color: $black;
+        margin: 0 0 12px;
+
+        &-m {
+            margin: 0 0 0 25px;
+        }
+    }
+
+    &__form-text-total {
+        @include font(16px, 19px, 300);
+        text-transform: uppercase;
+        text-align: end;
+        color: $black;
+        margin: 0 0 21px;
+
+        &-pink {
+            color: $dark-pink;
+            font-weight: 700;
+            margin: 0 0 0 20px;
+        }
+    }
+
+    &__form-line {
+        color: $gainsborough;
+        margin: 0 0 17px;
+    }
+
+    &__form-button-submit {
+        @include font(16px, 19px, 300);
+        text-transform: uppercase;
+        color: $white;        
+        padding: 15px 42px;
+        box-sizing: border-box;
+        background-color: $dark-pink;
+        outline: none;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.75;
+        }
+
+        &:focus {
+            opacity: 0.75;
+        }
+
+        &:active {
+            opacity: 1;
+        }
+    }
+}

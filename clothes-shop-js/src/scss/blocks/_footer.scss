@@ -1,0 +1,277 @@
+.subscription {
+    background-image: url(../img/subscribe.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    @include tablet {
+        background-image: url(../img/subscribe-tablet.jpg);
+        background-position: top;
+    }
+    
+    &__wrapper {
+        min-height: 448px;
+        @include flex-s-b-c();
+
+        @include tablet {
+            flex-direction: column;
+            padding: 64px 0 140px;
+        }
+
+        @include mobile {
+            padding: 64px 8px 110px;
+        }
+    }
+    
+    &__contorls {
+        text-align: center;
+        margin: 10px 0;
+
+        @include width-1024 {
+            width: 50%;
+            margin: 0 10px 0 0;
+        }
+
+        @include tablet {
+            margin: 0 0 65px;
+        }
+
+        @include width-480 {
+            width: 100%;
+        }
+
+        @include mobile {
+            margin: 0 0 59px;
+        }
+    }
+
+    &__img {
+        width: 96px;
+        height: 96px;
+        margin: 0 0 30px;
+
+        @include mobile {
+            width: 92px;
+            height: 92px;
+        }
+    }
+    
+    &__text {
+        width: 360px;
+        font-size: 20px;
+        line-height: 24px;
+
+        &-italic {
+            font-style: italic;
+        }
+
+        @include width-1024 {
+            width: 100%;
+        }
+
+        @include width-480 {
+            width: 100%;
+        }
+
+        @include mobile {
+            @include font(18px, 22px);
+        }
+    }
+
+    &__form {
+        width: 557px;
+        text-align: center;
+
+        &-heading {
+            @include font(24px, 38px, 700);            
+            text-transform: uppercase;
+        }
+        
+        &-text {
+            text-transform: uppercase;
+            font-size: 18px;
+            line-height: 30px;
+            margin: 0 0 32px;
+
+            @include tablet {
+                margin: 0 0 27px;
+            }
+
+            @include mobile {
+                @include font(14px, 21px);
+                margin: 0 0 22px;
+            }
+        }
+        
+        &-inner {
+            display: flex;
+            justify-content: center;
+        }
+        
+        &-input::-webkit-input-placeholder {
+            opacity: 0.67;
+        }
+        
+        &-input::-moz-placeholder {
+            opacity: 0.67;
+        }
+        
+        &-input:-moz-placeholder {
+            opacity: 0.67;
+        }
+        
+        &-input:-ms-input-placeholder {
+            opacity: 0.67;
+        }
+        
+        &-input {
+            width: 256px;
+            min-height: 49px;
+            background: $gainsborough;
+            border: none;
+            border-radius: 20px 0 0 20px;
+            @include font(14px, 17px);
+            padding: 0 0 0 22px;
+            box-sizing: border-box;
+            outline: none;
+
+            &:hover {
+                opacity: 0.75;
+            }
+
+            &:focus {
+                border: 1px solid $dark-pink;
+                outline: none;    
+            }
+
+            @include mobile {
+                height: 47px;
+                width: 245px;
+            }
+        }
+        
+        &-button {
+            width: 100px;
+            min-height: 49px;
+            background-color: $dark-pink;
+            border: none;
+            border-radius: 0 20px 20px 0;
+            @include font(14px, 17px);
+            color: $white;
+            cursor: pointer;
+            outline: none;
+    
+            &:hover {
+                opacity: 0.75;
+            }
+
+            &:focus {
+                opacity: 0.75;
+            }
+
+            &:active {
+                color: $dark-pink;
+                background-color: $white;
+                border: 1px solid $dark-pink;
+            }
+
+            @include mobile {
+                height: 47px;
+                width: 96px;
+            }
+        }
+
+        @include width-1024 {
+            width: 50%;
+        }
+
+        @include width-480 {
+            width: 100%;
+        }
+    }
+}
+
+.contacts {
+    background-color:$black;
+
+    &__wrapper {
+        @include flex-s-b-c();
+        min-height: 79px;
+
+        @include tablet {
+            padding: 0 16px;
+        }
+
+        @include mobile {
+            flex-direction: column-reverse;
+            padding: 41px 0 9px;
+        }
+    }
+    
+    &__text {
+        color: $white;
+        @include font(16px, 19px);
+    }
+    
+    &__socials {
+        display: flex;
+        width: 148px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        @include mobile {
+            margin: 0 0 39px;
+        }
+    }
+
+    &__socials-link {
+        outline: none;
+        display: block;
+    }
+    
+    &__icon-facebook,
+    &__icon-instagram,
+    &__icon-pinterest,
+    &__icon-twitter {    
+        fill: $white;
+    }
+    
+    &__socials-hover {
+        fill: $black;
+    }
+    
+    &__icon-facebook:hover,
+    &__icon-instagram:hover,
+    &__icon-pinterest:hover,
+    &__icon-twitter:hover {
+        fill: $dark-pink;    
+    }
+
+    &__socials-link:hover &__socials-hover, 
+    &__socials-link:hover &__socials-hover,
+    &__socials-link:hover &__socials-hover,
+    &__socials-link:hover &__socials-hover {
+        fill: $white;
+    }
+
+    &__socials-link:focus &__icon-facebook,
+    &__socials-link:focus &__icon-instagram,
+    &__socials-link:focus &__icon-pinterest,
+    &__socials-link:focus &__icon-twitter {
+        fill: $dark-pink;
+    }
+
+    &__socials-link:active &__icon-facebook,
+    &__socials-link:active &__icon-instagram,
+    &__socials-link:active &__icon-pinterest,
+    &__socials-link:active &__icon-twitter {
+        fill: $white;
+    }
+
+    &__socials-link:active &__socials-hover,
+    &__socials-link:active &__socials-hover,
+    &__socials-link:active &__socials-hover,
+    &__socials-link:active &__socials-hover {
+        fill: $black;
+    }
+}
